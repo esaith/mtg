@@ -1,0 +1,55 @@
+@import "../styles/main";
+
+.dashboard {
+  font-size: 16px;
+  font-family: sans-serif;
+
+  .deck-list-column {
+    max-width: 30vw;
+    width: 400px;
+
+    input {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .deck-list {
+      .deck {
+        margin: 0 10px;
+
+        box-sizing: border-box;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+
+        &:hover {
+          background-color: #7eaaaa;
+        }
+
+        &.selected {
+          background-color: #527272;
+          color: #e1e1e1;
+        }
+
+        .deck-name {
+          flex: 1 0 auto;
+          padding: 20px;
+        }
+      }
+    }
+  }
+
+  .card-list {
+    .card {
+      width: 200px;
+      max-width: 20vw;
+      height: 250px;
+      margin: 0 5px;
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 5px;
+      box-sizing: border-radius;
+    }
+  }
+}

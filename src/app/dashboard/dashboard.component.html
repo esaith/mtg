@@ -1,0 +1,52 @@
+<div class='dashboard flex align-top'>
+  <div class='deck-list-column'>
+    <div class="flex align-center">
+      <input type='text' name='deckname' [(ngModel)]='deckName' placeholder="Deck Name"
+        (keyup.enter)="createDeck(deckName)">
+      <button mat-raised-button color="primary" (click)='createDeck(deckName)'>Create New Deck</button>
+    </div>
+    <div class="deck-list">
+      <div *ngFor='let deck of decks; let i = index' class='deck flex align-center justify-between'
+        [class.selected]='selectedDeck && deck.Id === selectedDeck.Id'>
+        <div *ngIf='!deck.editing' class='deck-name' (click)='selectDeck(deck)'>{{deck.Name}}</div>
+        <input type='text' *ngIf='deck.editing' [(ngModel)]="deck.Name" />
+        <div class='flex align-cetner'>
+          <button mat-icon-button (click)="editDeck(deck)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="verifyDeleteDeck(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='card-list flex align-top wrap'>
+    <div class='card' *ngFor='let card of allCards; trackBy: trackByFn'>
+      <div class='flex align-center justify-between'>
+        <div>{{card.Name}}</div>
+        <div>Cost</div>
+      </div>
+      <div>
+        <div></div>
+      </div>
+      <div class='flex align-center justify-center'>
+        <button mat-icon-button (click)="removeFromDeck(card)">
+          <mat-icon>exposure_neg_1</mat-icon>
+        </button>
+        <button mat-icon-button (click)="addToDeck(card)">
+          <mat-icon>exposure_plus_1</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class='selected-deck-list' *ngIf='selectedDeck'>
+    <div>Deck</div>
+    <div *ngFor='let card of selectedDeck.Cards' class='flex align-center justify-between'>
+      <div>{{card.Name}}</div>
+      <button mat-icon-button (click)="removeFromDeck(card)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
